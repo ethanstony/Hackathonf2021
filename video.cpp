@@ -11,8 +11,8 @@ using namespace std;
 int main(int, char**)
 {
     Mat frame, gray;
-    Mat res, loc;
-    double thres = 0.84;
+    Mat res;
+    double thres = 1;
 
     //--- INITIALIZE VIDEOCAPTURE
     VideoCapture cap;
@@ -34,9 +34,15 @@ int main(int, char**)
 	return -2;
     }
     //imshow("Template", img);
-    Size sz = img.size();
-    int w = sz.width;
-    int h = sz.height;
+    //cap.read(frame);
+    //Size SZ = frame.size();
+    //Size sz = img.size();
+    //int W = SZ.width;
+    //int H = SZ.height;
+    //int w = sz.width;
+    //int h = sz.height;
+    //int xmax = W-w+1;
+    //int ymax = H-h+1;
 
     //--- GRAB AND WRITE LOOP
     cout << "Start grabbing" << endl
@@ -51,17 +57,28 @@ int main(int, char**)
             break;
         }
 	//Operate on image
-	cvtColor(frame, gray, COLOR_BGR2GRAY);
-	//matchTemplate(gray, img, res, TM_CCOEFF_NORMED);
-	//for (x=0,x++,x<res.size.width)
-	//{
-	//	for (y=0,y++,y<res.size.height)
-	//	{
-	//		if (res[x,y] >= thres)
-	//			rectangle
-	//	}
-	//}
+	//cvtColor(frame, gray, COLOR_BGR2GRAY);
+	matchTemplate(frame, img, res, TM_CCOEFF_NORMED);
+	normalize(res, res, 0, 1, NORM_MINMAX, -1, Mat() );
+	int counts = 0;
+	for (int x=0;x<res.cols;x++)
+	{
+		for (int y=0;y<res.rows;y++)
+		{
+			if (res.at<double>(x,y) >= thres)
+			{
+				counts++;
+				//cout << res.at<double>(x,y) << " ";
+				rectangle(frame, Point(x,y),
+					Point(x+5,y+5),
+					Scalar(255,0,0),1);
+			}
+		}
+		//cout << endl;
+	}
         // show live and wait for a key with timeout long enough to show images
+	cout << counts;
+	counts = 0;
         imshow("Live", frame);
         if (waitKey(5) >= 0)
             break;
