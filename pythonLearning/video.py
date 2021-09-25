@@ -1,4 +1,4 @@
-#Name: Ethan Tabachneck
+#Name: Ethan Tabachneck, Saad Ismail, Ismail Ajaz, Khalid Muhammad
 #Date: 25 September 2021
 #Purpose: Learn OpenCV
 #Resources: https://www.mygreatlearning.com/blog/opencv-tutorial-in-python/#sh7
@@ -10,12 +10,28 @@
 #away. Also needs to determine rotation compared to the camera. if it is not
 #working, adjust the threshold since that is the cutoff on the AI's certainty
 #that the thing being looked at is what is being looked for. Also maybe change
-#the image from the grapefruit
+#the image from the Launchpad
 import numpy as np
 import cv2
 
 cap = cv2.VideoCapture(2)
-img = cv2.imread('images/grapefruit.png', 0)
+img = cv2.imread('images/Launchpad.png', 0)
+img7 = cv2.resize(img, (700, 700),
+    interpolation = cv2.INTER_NEAREST)
+img6 = cv2.resize(img, (600, 600),
+    interpolation = cv2.INTER_NEAREST)
+img5 = cv2.resize(img, (500, 500),
+    interpolation = cv2.INTER_NEAREST)
+img4 = cv2.resize(img, (400, 400),
+    interpolation = cv2.INTER_NEAREST)
+img3 = cv2.resize(img, (300, 300),
+    interpolation = cv2.INTER_NEAREST)
+img2 = cv2.resize(img, (200, 200),
+    interpolation = cv2.INTER_NEAREST)
+img1 = cv2.resize(img, (100, 100),
+    interpolation = cv2.INTER_NEAREST)
+img_5 = cv2.resize(img, (50, 50),
+    interpolation = cv2.INTER_NEAREST)
 w, h = img.shape[::-1]
 threshold = 0.84
 #lowersize = 0.1
