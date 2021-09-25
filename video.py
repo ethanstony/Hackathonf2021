@@ -26,7 +26,7 @@ img = cv2.imread('data/Launchpad.png', 0)
 #    interpolation = cv2.INTER_NEAREST)
 #img3 = cv2.resize(img, (300, 300),
 #    interpolation = cv2.INTER_NEAREST)
-img2 = cv2.resize(img, (200, 200),
+img2 = cv2.resize(img, (150, 150),
     interpolation = cv2.INTER_NEAREST)
 img1 = cv2.resize(img, (100, 100),
     interpolation = cv2.INTER_NEAREST)
@@ -95,7 +95,7 @@ while(True):
     res2 = cv2.matchTemplate(gray,img2,eval('cv2.TM_CCOEFF_NORMED'))
     loc2 = np.where(res2 >= threshold)
     for pt in zip(*loc2[::-1]):
-        cv2.rectangle(frame, pt, (pt[0]+200, pt[1]+200), (255,0,0), 1)
+        cv2.rectangle(frame, pt, (pt[0]+150, pt[1]+150), (255,0,0), 1)
         #if (i >= iup):
         #    if (pt[0] > centW):
         #        print("Horizontal: Move Left")
